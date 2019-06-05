@@ -46,10 +46,10 @@ $(document).ready(function(){
                     'label': 'Fatturato mensile',
                     'data': dati_mesi,
                     'backgroundColor': [
-                        'rgba(255, 255, 255, 0.2)',
+                        'rgba(0, 245, 216, 0.2)',
                     ],
                     'borderColor': [
-                        'rgba(154, 106, 220, 1)',
+                        'rgba(0, 245, 216, 1)',
                     ],
                     'borderWidth': 1
                 }
