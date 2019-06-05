@@ -7,19 +7,33 @@
 
 body{
   margin: 50px;
-  background-color: #2d3436;
+  background-color: #fff;
+}
+
+.title{
+  color: #55efc4;
+  margin-bottom: 10px;
+
 }
 
 .container_chart{
   background-color: #fff;
   height: 500px;
   width: 1200px;
+  margin-top: 40px;
+  margin-left: 10px;
 }
 
-#myChart1,
+#myChart1{
+  max-width: 430px;
+  max-height: 370px;
+  float: left;
+  margin: 15px 100px;
+}
+
 #myChart2{
-  max-width: 400px;
-  max-height: 500px;
+  max-width: 320px;
+  max-height: 420px;
   float: left;
   margin: 15px 100px;
 }

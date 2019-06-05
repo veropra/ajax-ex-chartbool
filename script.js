@@ -108,13 +108,7 @@ $(document).ready(function(){
                       'rgba(235, 92, 92, 0.2)',
                       'rgba(120, 92, 235, 0.2)',
                     ],
-                    'borderColor': [
-                      'rgba(92, 235, 108, 1)',
-                      'rgba(92, 194, 235, 1)',
-                      'rgba(235, 92, 92, 1)',
-                      'rgba(120, 92, 235, 1)'
-                    ],
-                    'borderWidth': 1
+                    'borderWidth': 2
                 }]
             },
             'options': {
