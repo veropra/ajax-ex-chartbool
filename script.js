@@ -1,22 +1,29 @@
 $(document).ready(function(){
   //Url personalizzato
   var url_base = 'http://157.230.17.132:4013/sales';
-
+  var totale_vendite = 0;
   stampa_chart();
 
+  //Intercetto il click
   $('.container').on('click', 'button', function() {
       var impiegato = $('.nomi').val();
+      console.log("impiegato: " + impiegato);
       var data = $('.mesi').val();
-      var data_select = moment(data, 'YYYY-MM-DD').format('DD/MM/YYYY');
+      console.log("data: " + data);
+      //var data_select = moment(data).format('DD/MM/YYYY');
+
+      var numMese = moment().month(data).format("MM");
+      data_select = "01/" + numMese + "/2017";
+      console.log("data_select: " + data_select);
 
       var new_val =  $('.importo').val();
-
+      console.log("new_val: " + new_val);
       input_dati(url_base, impiegato, data_select, new_val);
       stampa_chart(url_base);
     });
   //Creo una funzione che mi crea il grafico con i dati in get con una chiamata ajax
-  function stampa_chart(){
-    
+  function stampa_chart() {
+
     var mesi = {
       'January': 0,
       'February': 0,
@@ -61,11 +68,11 @@ $(document).ready(function(){
         }
 
         mese_singolo = [];
-        for (var i = 0; i < label_mesi.length; i++) {
-          var moment_data = moment([2017, 0, 31]).month(label_mesi[i]).format('MMMM');
+        for (var j = 0; j < label_mesi.length; j++) {
+          var moment_data = moment([2017, 0, 31]).month(label_mesi[j]).format('MMMM');
           mese_singolo.push(moment_data);
         }
-
+//------------------------------------------------------------------------------
         //CHART-1: LINE
         var chart1 = document.getElementById('myChart1').getContext('2d');
 
@@ -100,10 +107,10 @@ $(document).ready(function(){
         //Faccio un ciclo for, per il chart2
         var vendite = {};
 
-        for (var i = 0; i < response.length; i++) {
-          var vendita = response[i];
-          var venditore = response[i].salesman;
-          var importo = response[i].amount;
+        for (var a = 0; a < response.length; a++) {
+          var vendita = response[a];
+          var venditore = response[a].salesman;
+          var importo = response[a].amount;
           var venditori_inseriti = Object.keys(vendite);
 
           if (!venditori_inseriti.includes(venditore)) {
@@ -114,27 +121,29 @@ $(document).ready(function(){
         }
 
         //Appendo i nomi degli impiegati nella select
-        for (var i = 0; i < venditori_inseriti.length; i++) {
-          var impiegato = venditori_inseriti[i];
+        for (var b = 0; b < venditori_inseriti.length; b++) {
+          totale_vendite += vendite[venditore];
+          var impiegato = venditori_inseriti[b];
           $('.nomi').append($('<option value="'+ impiegato +'">'+ impiegato +'</option>'));
         }
 
         //Appendo i mesi nella select
-        for (var i = 0; i < label_mesi.length; i++) {
-          var mese = label_mesi[i];
+        for (var z = 0; z < label_mesi.length; z++) {
+          var mese = label_mesi[z];
           $('.mesi').append($('<option value="'+ mese +'">'+ mese +'</option>'));
         }
 
         //Preparo le percentuali di vendita per ogni venditore
         for(var venditore in vendite){
-          var totale_vendite = vendite[venditore];
-          var percentuale = importo * 100 / totale_vendite;
+          var percentuale = (vendite[venditore] / totale_vendite) * 100;
           //Aggiorno il valore delle vendite con la percentuale
           vendite[venditore] = percentuale.toFixed(1);
+
         }
         var label_venditore = Object.keys(vendite);
-        var label_vendite_per_venditore = Object.values(vendite);
+        var data_vendite_per_venditore = Object.values(vendite);
 
+//------------------------------------------------------------------------------
         //CHART-2: PIE
         var chart2 = document.getElementById('myChart2').getContext('2d');
 
@@ -143,7 +152,7 @@ $(document).ready(function(){
             'data': {
                 'labels': label_venditore,
                 'datasets': [{
-                    'data': label_vendite_per_venditore,
+                    'data': data_vendite_per_venditore,
                     'text': 'Vendite per venditore',
                     'backgroundColor': [
                       'rgba(92, 235, 108, 0.2)',
