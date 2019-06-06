@@ -54,7 +54,7 @@ $(document).ready(function(){
         }
 
         var label_mesi = Object.keys(mesi);
-        var dati_mesi = Object.values(mesi);
+        var dati_mesi = Object.values(importo);
 
         for (var mese in mesi) {
           if (mese == moment_data)
@@ -73,7 +73,7 @@ $(document).ready(function(){
         var myLineChart1 = new Chart(chart1, {
             'type': 'line',
             'data': {
-                'labels': mese_singolo,
+                'labels': label_mesi,
                 'datasets': [{
                     'label': 'Fatturato mensile',
                     'data': dati_mesi,
@@ -97,7 +97,7 @@ $(document).ready(function(){
                 }
             }
         });
-
+//------------------------------------------------------------------------------
         //Faccio un ciclo for, per il chart2
         var vendite = {};
 
@@ -185,7 +185,7 @@ function input_dati(url, nome, giorno, valore) {
     'success': function (response) {
 
     },
-    error: function () {
+    'error': function () {
       alert('errore');
     }
   })
