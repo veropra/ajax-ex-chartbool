@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>ChartBool</title>
     <!--googlefont-->
-    <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <!-- chart -->
@@ -17,6 +17,20 @@
   <body>
     <div class="title">
       <h1>My Dashboard</h1>
+    </div>
+    <div class="dates">
+      <select class="nomi" data-role="select">
+        <option value="">Scegli impiegato</option>
+      </select>
+      <div class="input_dates">
+        <select class="mesi" data-role="select">
+          <option value="">Scegli mese</option>
+        </select>
+        <input class="importo" type="text" placeholder="Inserisci l'importo di vendita">
+      </div>
+      <div class= "container">
+        <button>Inserisci</button>
+      </div>
     </div>
     <div class="container_chart">
       <canvas id="myChart1" width="400" height="400"></canvas>
