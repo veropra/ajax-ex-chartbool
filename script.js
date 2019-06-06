@@ -16,8 +16,7 @@ $(document).ready(function(){
     });
   //Creo una funzione che mi crea il grafico con i dati in get con una chiamata ajax
   function stampa_chart(){
-    $('.myChart1').html('');
-    $('.myChart2').html('');
+    
     var mesi = {
       'January': 0,
       'February': 0,
