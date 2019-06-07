@@ -7,17 +7,13 @@ $(document).ready(function(){
   //Intercetto il click
   $('.container').on('click', 'button', function() {
       var impiegato = $('.nomi').val();
-      console.log("impiegato: " + impiegato);
       var data = $('.mesi').val();
-      console.log("data: " + data);
       //var data_select = moment(data).format('DD/MM/YYYY');
 
       var numMese = moment().month(data).format("MM");
       data_select = "01/" + numMese + "/2017";
-      console.log("data_select: " + data_select);
 
       var new_val =  $('.importo').val();
-      console.log("new_val: " + new_val);
       input_dati(url_base, impiegato, data_select, new_val);
       stampa_chart(url_base);
     });
